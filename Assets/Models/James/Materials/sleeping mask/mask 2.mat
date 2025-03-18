@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: window
+  m_Name: mask 2
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,14 +24,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 7d14c06b57d4d5a4580e4fad0585674d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - Step1: 1
     - _Gloss: 5.37
-    - _OutlineWidth: 0.2
+    - _OutlineWidth: 0.07
     - _RimPower: 2.2
     - _RimStep: 0.678
     - _RimStepSmooth: 0
@@ -45,7 +45,7 @@ Material:
     - _Step3: 0.97
     - _Step4: 0.025
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.55823696, g: 0.54734784, b: 0.5660378, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
