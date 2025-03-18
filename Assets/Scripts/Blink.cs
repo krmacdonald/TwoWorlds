@@ -1,5 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+/**
+ * Created by krmacdonald
+ * This script allows the player to blink by using the space bar or their desired "jump" button
+ * Prerequisites: Please add the UI prefab into the scene, it should come attached with this script
+ * from there, please assign the camera variables and adjust the other settings such
+ * as delay, blinkspeed, and others accordingly
+ * DELAY is the amount of time it takes to go from one world to another when blinking
+ */
+
 public class Blink : MonoBehaviour
 {
     //Used to manage the resting/final positions of the blinking lids
@@ -18,7 +28,7 @@ public class Blink : MonoBehaviour
 
     //vars to keep track of switching between the two worlds
     public float delay;
-    public float timer;
+    private float timer;
     private bool plush;
     private bool transported;
 

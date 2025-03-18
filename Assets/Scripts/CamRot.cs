@@ -1,5 +1,11 @@
 using UnityEngine;
 
+
+/**
+ * Created by krmacdonald
+ * A third person camera script that can be modified for first person behavior
+ * Prerequisites: Drag in player (lookAt) and camera objects into required slots in the inspector
+ */
 public class CamRot : MonoBehaviour
 {
     private const float YMin = -50.0f;
