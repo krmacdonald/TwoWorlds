@@ -31,6 +31,7 @@ public class Blink : MonoBehaviour
     private float timer;
     private bool plush;
     private bool transported;
+    public float blinkForce; //used in coffeemask to force the blink
 
     public GlobalVolumeShift volShift;
 
@@ -77,7 +78,7 @@ public class Blink : MonoBehaviour
     void Update()
     {
         //Holding your eyes shut
-        if(Input.GetAxis("Jump") > 0)
+        if(Input.GetAxis("Jump") + blinkForce > 0)
         {
             timer += Time.deltaTime;
             if(eyeOne.position.y < goalYOne)

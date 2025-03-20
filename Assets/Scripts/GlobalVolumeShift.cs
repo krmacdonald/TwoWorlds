@@ -26,11 +26,12 @@ public class GlobalVolumeShift : MonoBehaviour
     private Vector4Parameter lowMidtones = new Vector4Parameter(new Vector4(0.9f, 1f, 0.84f, .21f)); //mysterious fourth coordinate might be inaccurate
     private Vector4Parameter lowHighlights = new Vector4Parameter(new Vector4(1, 1f, 0.98f, 0f));
 
-    public GameObject[] plushLights;
-    public GameObject[] lowpolyLights;
+    
 
-    private Collider[] lowpolyColliders;
-    private Collider[] plushColliders;
+    public Collider[] lowpolyColliders;
+    public Collider[] plushColliders;
+    public Light[] plushLights;
+    public Light[] lowpolyLights;
     public GameObject plushSearchParent;
     public GameObject lowpolySearchParent;
 
@@ -40,6 +41,8 @@ public class GlobalVolumeShift : MonoBehaviour
     {
         lowpolyColliders = lowpolySearchParent.GetComponentsInChildren<Collider>();
         plushColliders = plushSearchParent.GetComponentsInChildren<Collider>();
+        plushLights = plushSearchParent.GetComponentsInChildren<Light>();
+        lowpolyLights = lowpolySearchParent.GetComponentsInChildren<Light>();
     }
 
     private void swapColliders(string world)
@@ -79,13 +82,13 @@ public class GlobalVolumeShift : MonoBehaviour
             goal.midtones.SetValue(lowMidtones);
             goal.shadows.SetValue(lowShadows);
             goal.highlights.SetValue(lowHighlights);
-            foreach (GameObject go in plushLights)
+            foreach (Light go in plushLights)
             {
-                go.GetComponent<Light>().enabled = false;
+                go.enabled = false;
             }
-            foreach (GameObject go in lowpolyLights)
+            foreach (Light go in lowpolyLights)
             {
-                go.GetComponent<Light>().enabled = true;
+                go.enabled = true;
             }
         }
         else
@@ -104,13 +107,13 @@ public class GlobalVolumeShift : MonoBehaviour
                 goal.midtones.SetValue(lowMidtones);
                 goal.shadows.SetValue(lowShadows);
                 goal.highlights.SetValue(lowHighlights);
-                foreach (GameObject go in plushLights)
+                foreach (Light go in plushLights)
                 {
-                    go.GetComponent<Light>().enabled = false;
+                    go.enabled = false;
                 }
-                foreach(GameObject go in lowpolyLights)
+                foreach (Light go in lowpolyLights)
                 {
-                    go.GetComponent<Light>().enabled = true;
+                    go.enabled = true;
                 }
                 swapColliders("poly");
             }
@@ -119,13 +122,13 @@ public class GlobalVolumeShift : MonoBehaviour
                 goal.midtones.SetValue(plushMidtones);
                 goal.shadows.SetValue(plushShadows);
                 goal.highlights.SetValue(plushHighlights);
-                foreach (GameObject go in plushLights)
+                foreach (Light go in plushLights)
                 {
-                    go.GetComponent<Light>().enabled = true;
+                    go.enabled = true;
                 }
-                foreach (GameObject go in lowpolyLights)
+                foreach (Light go in lowpolyLights)
                 {
-                    go.GetComponent<Light>().enabled = false;
+                    go.enabled = false;
                 }
                 swapColliders("plush");
             }
