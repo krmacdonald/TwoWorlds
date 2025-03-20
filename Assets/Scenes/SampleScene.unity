@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -3685,9 +3685,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 832575518}
-  plush: 1
+  plush: 0
   devDebug: 0
   goal: {fileID: 0}
+  plushLights:
+  - {fileID: 1056598907}
+  - {fileID: 474249377}
+  - {fileID: 1434338576}
+  - {fileID: 770684375}
+  - {fileID: 762268887}
+  lowpolyLights:
+  - {fileID: 1062579687}
+  - {fileID: 210237457}
 --- !u!1 &846900690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6039024957910211348, guid: 42bf792076cf6b043baf86a781a6e1d4, type: 3}
@@ -11096,8 +11105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.776142, y: 2.149648, z: 7.581403}
-  m_Center: {x: -4.8701534, y: -0.37013018, z: 0.09647703}
+  m_Size: {x: 5.4633136, y: 2.149648, z: 7.581403}
+  m_Center: {x: -4.713748, y: -0.37013018, z: 0.09647703}
 --- !u!1 &919132148515728387
 GameObject:
   m_ObjectHideFlags: 0
@@ -17307,6 +17316,7 @@ GameObject:
   - component: {fileID: 533193075465960608}
   - component: {fileID: 5032879961503939808}
   - component: {fileID: 6364262636944733228}
+  - component: {fileID: 6364262636944733229}
   m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
@@ -17638,6 +17648,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6364262636944733229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089873161131356841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0167034, y: 2.4462903, z: 2.0025399}
+  m_Center: {x: -9.55166, y: -0.26925948, z: 0.0008297266}
 --- !u!23 &6364262637536089271
 MeshRenderer:
   m_ObjectHideFlags: 0

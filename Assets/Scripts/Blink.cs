@@ -43,6 +43,8 @@ public class Blink : MonoBehaviour
     private string[] plushLayerNames = new string[2];
     private string[] lowpolyLayerNames = new string[2];
 
+    
+
     void Start()
     {
         plushLayerNames[0] = plushLayer;

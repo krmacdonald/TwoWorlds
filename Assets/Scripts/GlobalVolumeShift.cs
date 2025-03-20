@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 
 /**
+ * ALSO MANAGES THE LIGHTS IN THE SCENE***********
  * Created by krmacdonald
  * To implement, just attach the script to the global volume, and insert the volume into the inspector slot. 
  * Output: Switches between the two smh profiles to alter the lighting within the two scenes.
@@ -21,21 +22,77 @@ public class GlobalVolumeShift : MonoBehaviour
     private Vector4Parameter plushHighlights = new Vector4Parameter(new Vector4(1, 0.78f, 0f, 0f));
 
     //low-poly vectors
-    private Vector4Parameter lowShadows = new Vector4Parameter(new Vector4(1, 0.53f, 0.71f, 0f));
-    private Vector4Parameter lowMidtones = new Vector4Parameter(new Vector4(1, 0.53f, 0.71f, .21f)); //mysterious fourth coordinate might be inaccurate
-    private Vector4Parameter lowHighlights = new Vector4Parameter(new Vector4(1, 0.53f, 0.71f, 0f));
+    private Vector4Parameter lowShadows = new Vector4Parameter(new Vector4(0.65f, 1f, 0.73f, 0f));
+    private Vector4Parameter lowMidtones = new Vector4Parameter(new Vector4(0.9f, 1f, 0.84f, .21f)); //mysterious fourth coordinate might be inaccurate
+    private Vector4Parameter lowHighlights = new Vector4Parameter(new Vector4(1, 1f, 0.98f, 0f));
+
+    public GameObject[] plushLights;
+    public GameObject[] lowpolyLights;
+
+    private Collider[] lowpolyColliders;
+    private Collider[] plushColliders;
+    public GameObject plushSearchParent;
+    public GameObject lowpolySearchParent;
+
+
+
+    private void getAllColliders()
+    {
+        lowpolyColliders = lowpolySearchParent.GetComponentsInChildren<Collider>();
+        plushColliders = plushSearchParent.GetComponentsInChildren<Collider>();
+    }
+
+    private void swapColliders(string world)
+    {
+        if(world == "plush")
+        {
+            foreach (Collider collider in lowpolyColliders)
+            {
+                collider.enabled = false;
+            }
+            foreach (Collider collider in plushColliders)
+            {
+                collider.enabled = true;
+            }
+        }
+        else
+        {
+            foreach (Collider collider in lowpolyColliders)
+            {
+                collider.enabled = true;
+            }
+            foreach (Collider collider in plushColliders)
+            {
+                collider.enabled = false;
+            }
+        }
+        
+    }
 
     private void Start()
     {
+        getAllColliders();
         //Tries to get the shadowsmidtoneshighlights with catch
         if(volume.profile.TryGet(out goal))
         {
             Debug.Log("SMH Acquired");
+            goal.midtones.SetValue(lowMidtones);
+            goal.shadows.SetValue(lowShadows);
+            goal.highlights.SetValue(lowHighlights);
+            foreach (GameObject go in plushLights)
+            {
+                go.GetComponent<Light>().enabled = false;
+            }
+            foreach (GameObject go in lowpolyLights)
+            {
+                go.GetComponent<Light>().enabled = true;
+            }
         }
         else
         {
             Debug.Log("ERROR CANNOOT FIND SMH");
         }
+
     }
 
     public void toggleVolume()
@@ -47,12 +104,30 @@ public class GlobalVolumeShift : MonoBehaviour
                 goal.midtones.SetValue(lowMidtones);
                 goal.shadows.SetValue(lowShadows);
                 goal.highlights.SetValue(lowHighlights);
+                foreach (GameObject go in plushLights)
+                {
+                    go.GetComponent<Light>().enabled = false;
+                }
+                foreach(GameObject go in lowpolyLights)
+                {
+                    go.GetComponent<Light>().enabled = true;
+                }
+                swapColliders("poly");
             }
             else
             {
                 goal.midtones.SetValue(plushMidtones);
                 goal.shadows.SetValue(plushShadows);
                 goal.highlights.SetValue(plushHighlights);
+                foreach (GameObject go in plushLights)
+                {
+                    go.GetComponent<Light>().enabled = true;
+                }
+                foreach (GameObject go in lowpolyLights)
+                {
+                    go.GetComponent<Light>().enabled = false;
+                }
+                swapColliders("plush");
             }
             plush = !plush;
         }
