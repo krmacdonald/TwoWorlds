@@ -62,10 +62,10 @@ public class Blink : MonoBehaviour
         int mask = 0;
         foreach (string layerName in targetLayers)
         {
-            int layer = LayerMask.NameToLayer(layerName);
+            int layer = LayerMask.NameToLayer(layerName); //Gets the layers that we want to display
             if (layer != -1)
             {
-                mask |= (1 << layer);
+                mask |= (1 << layer); //converts the layer value to bits for the mask using compound assignment
             }
             else
             {
